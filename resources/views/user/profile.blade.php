@@ -47,6 +47,7 @@
         #button1{
             display: none
         }
+
     </style>
 </head>
 <body>
@@ -85,8 +86,84 @@
                 </div>
             </div>
         </div>
-    </div>
+        @if($order)
+        <center class="mt-5">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Application registered
+          </button>
 
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Information</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    {{-- pickupo lat lng      --}}
+                    <div class="row mb-3">
+                        <label style="font-size: 20px">origin</label>
+                        <div class="col-6"><input class="form-control" type="text" value="Lat: {{$order->pickup_lat}}" readonly></div>
+                        <div class="col-6"><input class="form-control" type="text" value="Lng: {{$order->pickup_lng}}" readonly></div>
+                    </div>
+                    {{-- pickupo lat lng      --}}
+                    <hr>
+                    {{-- drop lat lng      --}}
+                    <div class="row mt-3">
+                        <label style="font-size: 20px">destination</label>
+                        <div class="col-6"><input class="form-control" type="text" value="Lat: {{$order->dropoff_lat}}" readonly></div>
+                        <div class="col-6"><input class="form-control" type="text" value="Lng: {{$order->dropoff_lng}}" readonly></div>
+                    </div>
+                    {{-- drop lat lng      --}}
+                    <hr>
+                    <div class="row mt-3">
+                    <center><div class="col-4"><input class="form-control" type="text" value='Price: ${{ $order->fare }}' readonly></div></center>
+                   </div>
+                   <hr style="background-color: black; border-width: 2px">
+                   <div class="row mt-3">
+                        <label style="font-size: 20px">Driver profile</label>
+                        @if($order->driver)
+                            <div class="col-6"><input class="form-control" type="text" value="fullname: {{$order->driver->fullname}}" readonly></div>
+                            <div class="col-6"><input class="form-control" type="text" value="phone_number: {{$order->driver->phone_number}}" readonly></div>
+                        @else
+                            <div class="col-6"><input class="form-control" type="text" value="No driver assigned" readonly></div>
+                        @endif
+                    </div>
+                   <!-- <hr> -->
+                   <div class="row mt-3">
+                   @if($order->driver)
+                       <div class="col-4"><input class="form-control" type="text" value="car_name: {{$order->driver->car_name}}" readonly></div>
+                       <div class="col-4"><input class="form-control" type="text" value="car_model: {{$order->driver->car_model}}" readonly></div>
+                       <div class="col-4"><input class="form-control" type="text" value="car_color: {{$order->driver->car_color}}" readonly></div>
+                   @else
+                       <div class="col-4"><input class="form-control" type="text" value="No car information" readonly></div>
+                   @endif
+                   </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                  <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            <a style="color: white" href="{{url('/delete-trip')}}">
+                            cancel request</a>
+                        </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </center>
+      @endif
+    </div>
     <!-- Code injected by live-server -->
     <script>
         // <![CDATA[  <-- For SVG support

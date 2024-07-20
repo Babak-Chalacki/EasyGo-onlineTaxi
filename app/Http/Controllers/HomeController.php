@@ -19,9 +19,11 @@ class HomeController extends Controller
     {
         return view("register");
     }
-    function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('drivers')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('/');
     }
 }

@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Driver;
 use Illuminate\Http\Request;
 
 class DriversController extends Controller
 {
-    function driver_register_form()
+    function driver_profile()
+    {
+        $orders = Order::whereNull('driver_id')->get();
+        return view("driver.profile", [
+            'orders' => $orders
+        ]);
+    }
+    public function driver_register_form()
     {
         return view('driver.register');
     }
-    function driver_login_form()
+
+    public function driver_login_form()
     {
         return view('driver.login');
     }
-    function driver_register(Request $request)
+
+    public function driver_register(Request $request)
     {
         $request->validate([
             'fullname' => 'required|string|max:255',
@@ -29,36 +38,57 @@ class DriversController extends Controller
             'car_color' => 'required|string',
             'number' => 'required|numeric',
         ]);
-        if ($request->password == $request->repass) {
-            $new_driver = new Driver();
-            $new_driver->fullname = $request->fullname;
-            $new_driver->username = $request->username;
-            $new_driver->email = $request->email;
-            $new_driver->password = bcrypt($request->password);
-            $new_driver->car_name = $request->car_name;
-            $new_driver->car_model = $request->car_model;
-            $new_driver->car_color = $request->car_color;
-            $new_driver->phone_nomber = $request->number;
 
-            $new_driver->save();
-            Auth::guard('drivers')->login($new_driver);
-            return redirect('/');
-        } else {
-            return redirect()->back()->with('error', 'Password and Re-password not match');
-        }
+        $driver = Driver::create([
+            'fullname' => $request->fullname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'car_name' => $request->car_name,
+            'car_model' => $request->car_model,
+            'car_color' => $request->car_color,
+            'phone_number' => $request->number,
+        ]);
+
+        Auth::guard('drivers')->login($driver);
+        return redirect('/');
     }
 
-    function login_driver(Request $request)
+    public function login_driver(Request $request)
     {
-        // $request->validate([
-        //     'email' => 'equired|',
-        //     'password' => 'equired'
-        // ]);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         if (Auth::guard('drivers')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/');
+            return redirect('/driver-profile');
         } else {
             return redirect()->back()->with('error', 'Invalid email or password');
+            // return redirect('/driver-profile');
         }
+    }
+    function edit_driver_profile(Request $request)
+    {
+        $user = Auth::guard('drivers')->user(); // retrieve the current user
+        $user->fullname = $request->fullname;
+        $user->phone_number = $request->number;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->car_name = $request->car_name;
+        $user->car_model = $request->car_model;
+        $user->car_color = $request->car_color;
+
+
+
+        $user->save();
+        return redirect()->back();
+    }
+    function driver_accept($id)
+    {
+        $orders = Order::find($id);
+        $orders->driver_id =  Auth::guard('drivers')->id();
+        $orders->save();
+        return redirect()->back();
     }
 }

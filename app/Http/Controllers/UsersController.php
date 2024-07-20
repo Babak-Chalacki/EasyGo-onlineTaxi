@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -21,8 +21,13 @@ class UsersController extends Controller
     }
     function profile()
     {
-        return view("user.profile");
+        $order = Order::where('user_id', Auth::user()->id)->with('driver')->first();
+        return view("user.profile", [
+            'order' => $order
+        ]);
     }
+
+
     //    get
     //    post
     function post_register(Request $request)

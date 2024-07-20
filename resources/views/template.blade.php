@@ -51,16 +51,41 @@
                     <div class="menu_text">
                         <ul>
 
-                            <li>@auth
-                                {{ Auth::user()->fullname ||
-                                 Auth::guard('drivers')->user()->fullName  }}
-                                <li><a href="/logout">logout</a></li>
+                            <li>
+                                @auth('drivers')
+                                {{ Auth::guard('drivers')->user()->fullname }}
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button style="background-color:black; color:white;" type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            @else
+                                @auth('admin')
+                                    {{ Auth::guard('admin')->user()->fullname }}
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button style="background-color:black; color:white;" type="submit">Logout</button>
+                                        </form>
+                                    </li>
                                 @else
-
-                                <li><a href="/login-page">login</a></li>
-                                <li><a href="/register-page">Register</a></li>
-
-                            @endauth</li>
+                                    @auth
+                                        {{ Auth::user()->fullname }}
+                                        <li>
+                                            <form action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <button style="background-color:black; color:white;" type="submit">Logout</button>
+                                            </form>
+                                        </li>
+                                        <li><a href="/user-order">Order</a></li>
+                                    @else
+                                        <li><a href="/login-page">login</a></li>
+                                        <li><a href="/register-page">Register</a></li>
+                                    @endauth
+                                @endauth
+                            @endauth
+                            </li>
                             <li><a href="#contact">Contact Us</a></li>
                             <li><a href="#"><img src="images/search-icon.png"></a></li>
                             <div id="myNav" class="overlay">

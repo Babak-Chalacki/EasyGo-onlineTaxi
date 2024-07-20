@@ -14,7 +14,7 @@
           <div class="col-md-6">
             <div class="book_now">
               <h1 class="book_text">BOOK NOW</h1>
-              <h1 class="call_text">(+71) 1234567890</h1>
+              <h1 class="call_text">(+98) 1234567890</h1>
             </div>
             <div class="image_1"><img src="{{url('images/img-1.png')}}"></div>
           </div>
@@ -47,7 +47,7 @@
           <div class="col-md-6">
             <div class="book_now">
               <h1 class="book_text">BOOK NOW</h1>
-              <h1 class="call_text">(+71) 1234567890</h1>
+              <h1 class="call_text">(+98) 1234567890</h1>
             </div>
             <div class="image_1"><img src="{{url('images/img-1.png')}}"></div>
           </div>
@@ -80,7 +80,7 @@
           <div class="col-md-6">
             <div class="book_now">
               <h1 class="book_text">BOOK NOW</h1>
-              <h1 class="call_text">(+71) 1234567890</h1>
+              <h1 class="call_text">(+98) 1234567890</h1>
             </div>
             <div class="image_1"><img src="{{url('images/car.png')}}"></div>
           </div>
