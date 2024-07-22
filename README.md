@@ -26,3 +26,30 @@ Thank you for choosing the Online Taxi System for your transportation needs!
 Please note that this README is a general template and should be customized according to the specific details and requirements of your Online Taxi System GitHub repository.
 
 
+<h3 align="center">Client</h3>
+
+![main page](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/main.png)
+
+![choose](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/who.png)
+
+<h3 align="center">Passenger</h3>
+
+![profile](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/user_profile.png)
+
+![order](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/choose_trip.png)
+
+<h3 align="center">Driver</h3>
+
+![register](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/driver_register.png)
+
+![panel](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/driver_panel.png)
+
+<h3 align="center">Admin</h3>
+
+![dashboard](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/dashboard.png)
+
+![users managing](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/passengers.png)
+
+![drivers managing](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/drivers.png)
+
+![recovery password](https://github.com/Babak-Chalacki/EasyGo-onlineTaxi/blob/199e61c981acc1b88f0e6412a6026a9c53d21490/screen/password_recovery.png)
